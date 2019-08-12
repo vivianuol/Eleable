@@ -63,7 +63,7 @@ class Login extends React.Component {
                                         <div className="form-group">
                                         <p style={this.state.notice === "success!"? {color:'green'}:{color:'red'}}>{this.state.notice}</p>
                                             <label htmlFor="remember-me" className="text-info">
-                                                <span>Remember me</span>
+                                                <span>Remember me </span>
                                                 <span>
                                                     <input id="remember-me"
                                                     name="remember-me" type="checkbox" />

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./Profile.css";
 import Navbar from "./Navbar";
-//import { Modal, Button, InputGroup, FormControl } from 'react-bootstrap';
 import axios from 'axios';
 
 class Profile extends Component {
@@ -9,21 +8,18 @@ class Profile extends Component {
     constructor() {
         super();
         this.state = {
-            name: "Fiona Gallagher",
-            phone_number: "",
-            email: "",
-            website: "",
-            birthday: "2-22-1998",
-            image: 'img/user.png'
+            user: {}
         }
     }
 
     fetchUserInfo() {
         //NOTICE: Each time you need user_data, you have to use {withCredentials: true}
-        axios.get('http://localhost:8080/api/user_data', { withCredentials: true }).then(res => {
-            console.log("response" + JSON.stringify(res));
+        axios.get('http://localhost:8080/user', { withCredentials: true }).then(res => {
+            //console.log("response" + JSON.stringify(res));
+            console.log("***------------------***");
+            console.log(res.data);
             this.setState({
-                email: res.data.email
+                user: res.data
             })
         })
     };
@@ -47,17 +43,20 @@ class Profile extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6 img">
-                            <img src={this.state.image} alt="" className="img-rounded" />
+                            <img src={this.state.image ? this.state.image : 'img/user.png'} alt="" className="img-rounded" />
                         </div>
                         <div className="col-md-6 details">
-                            <blockquote>
-                                <h5>{this.state.name}</h5>
-                                <small><cite title="Source Title">Chicago, United States of America  <i className="icon-map-marker"></i></cite></small>
+                            
+                                <h5>{this.state.user.name?this.state.user.name:"Your name"}</h5>
+                                <blockquote>
+                                <p>{this.state.user.city? this.state.user.city: "city"}, {this.state.user.state? this.state.user.state: "state"}, {this.state.user.zip? this.state.user.zip: "zip"}  <i className="icon-map-marker"></i></p>
                             </blockquote>
                             <p>
-                                {this.state.email}<br /> {this.state.website}<br />
-                                {this.state.birthday}
+                                {this.state.user.email}<br /> {this.state.user.phoneNumber}<br />
+                                
                             </p>
+                            <blockquote>{this.state.user.aboutme}<br />
+                            </blockquote>
                         </div>
                     </div>
                 </div>

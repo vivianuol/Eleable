@@ -42,8 +42,11 @@ function objToSql(ob) {
 // Object for all our SQL statement functions.
 var orm = {
   all: function(table, uid, cb) {
-    var queryString = "SELECT * FROM " + table;
+    
+    var queryString;
+    queryString = "SELECT * FROM " + table;
     queryString += " WHERE user_id=" + uid +";";
+   
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
@@ -51,13 +54,21 @@ var orm = {
       cb(result);
     });
   },
+  
   getOne: function(table, uid, id, cb) {
-    var queryString = "SELECT * FROM " + table;
-    queryString += " WHERE ";
-    queryString += "id=" + id;
-    queryString += " AND user_id = " + uid;
-    queryString += ";"; 
-
+    var queryString;
+    if ( table=="contacts" ) {
+      queryString = "SELECT * FROM " + table;
+      queryString += " WHERE ";
+      queryString += " id= " + id;
+      queryString += " AND user_id = " + uid;
+      queryString += ";"; 
+    } else if ( table=="users" ) {
+      queryString =  "SELECT * FROM " + table;
+      queryString += " WHERE ";
+      queryString += " id= " + uid;
+      queryString += ";"; 
+    }
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
@@ -87,14 +98,22 @@ var orm = {
     });
   },
   // An example of objColVals would be {name: panther, sleepy: true}
-  update: function(table, objColVals, id, cb) {
-    var queryString = "UPDATE " + table;
-
-    queryString += " SET ";
-    queryString += objToSql(objColVals);
-    queryString += " WHERE ";
-    queryString += " id = " + id;
-
+  update: function(table, objColVals, uid, id, cb) {
+    var queryString;
+    if (table == "contacts") {
+      queryString = "UPDATE " + table;
+      queryString += " SET ";
+      queryString += objToSql(objColVals);
+      queryString += " WHERE ";
+      queryString += " id = " + id;
+    } else if (table == "users") {
+      queryString = "UPDATE " + table;
+      queryString += " SET ";
+      queryString += objToSql(objColVals);
+      queryString += " WHERE ";
+      queryString += " id = " + uid;
+    }
+ 
     console.log(queryString);
     connection.query(queryString, function(err, result) {
       if (err) {

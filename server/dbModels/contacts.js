@@ -10,7 +10,6 @@
       orm.getOne("contacts", uid, id, function(res) {
         cb(res);
       })
-      
     },
     // The variables cols and vals are object.
     create: function(cols, vals, cb) {

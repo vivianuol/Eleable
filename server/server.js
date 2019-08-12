@@ -14,13 +14,25 @@ var cors = require('cors');
 // Then pass them to cors:
 //app.use(cors());
 
+//set up multiple corsOptions.
+var allowedOrigins = ['http://localhost:3000',
+                      'http://192.168.0.11:3000'];
+app.use("*", cors( function(req, callback){
+  if (allowedOrigins.indexOf(req.header('Origin')) !== -1) {
+    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false } // disable CORS for this request
+  }
+  callback(null, corsOptions)
+  }
+));
+
 // // Set up a whitelist and check against it:
-var corsOptions = { 
-  origin: 'http://localhost:3000',
-  credentials: true
-}
-  
-app.use('*', cors(corsOptions));
+// var corsOptions = { 
+//   origin: 'http://localhost:3000',
+//   credentials: true
+// }
+// app.use('*', cors(corsOptions));
 
 //app.options("http://localhost:3000", cors())
 
@@ -39,6 +51,7 @@ app.use(passport.session());
 require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 require("./controllers/contacts_controller")(app);
+require("./controllers/users_controller")(app);
 
 // Import routes and give the server access to them.
 // var routes = require("./controllers/contacts_controller");

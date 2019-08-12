@@ -1,6 +1,5 @@
 //Requiring models and passport as we've configured it.
 var db = require("../models");
-var contact = require("../dbModels/contacts")
 var passport = require("../config/passport");
 
 module.exports = function (app) {
@@ -22,15 +21,40 @@ module.exports = function (app) {
     app.post("/api/signup", function (req, res) {
         console.log({ req_body: req.body });
 
-        db.User.create({
-            email: req.body.email,
-            password: req.body.password
-        }).then(function (data) {
-            console.log({ data: data })
-        });
+        let validateEmailExist;
 
-        console.log({ res: res });
-        res.redirect("/login");
+        db.User.findAll({
+            where: {
+                email: req.body.email
+            }
+        }).then(function(response){
+            console.log("#$%^&*&^%$#$%^&*");
+            console.log(response.length);
+            
+            if (!response.length>0) {
+            db.User.create({
+                email: req.body.email,
+                password: req.body.password
+            }).then(function (data) {
+                console.log({ data: data })
+                res.status(200).end();
+            });
+            } else {
+                res.send("This email is existing. Please change a new one, or use this email to log in.")
+            }
+        })
+
+        
+        // db.User.create({
+        //     email: req.body.email,
+        //     password: req.body.password
+        // }).then(function (data) {
+        //     console.log({ data: data })
+        // });
+    
+
+        // console.log({ res: res });
+        // res.redirect("/login");
     });
 
 
@@ -52,5 +76,100 @@ module.exports = function (app) {
         }
     });
 
+    //munipulate users(table) data
+    app.get("/user", function (req, res) {
+        console.log("------------------");
+        console.log(req.user);
+        if(!req.user){
+          res.status(401);
+        }
+        
+        db.User.findByPk(req.user.id).then((result)=> res.json(result))
+
+
+    });
+
+    // app.put( "/post/:id", (req, res) =>
+    // db.post.update({
+    //   title: req.body.title,
+    //   content: req.body.content
+    // },
+    // {
+    //   where: {
+    //     id: req.params.id
+    //   }
+    // }).then( (result) => res.json(result))
+    // );
+
+    app.put("/user",(req, res) => {
+        console.log("^^^^^^^^^^^^^^^^^^^^^");
+        console.log(req.user);
+        console.log(req.body);
+
+        db.User.update({
+            name: req.body.name,
+            email: req.body.email,
+            phoneNumber: req.body.phoneNumber,
+            address: req.body.address,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+            aboutme: req.body.aboutme
+        },{
+            where: {
+                id: req.user.id
+            }
+        }).then((result)=>{
+            console.log(result);
+            if (result.affectedRows == 0) {
+                // If no rows were changed, then the ID must not exist, so 404
+                return res.status(404).end();
+              } else {
+                res.status(200).end();
+              }
+        })
+        
+        // user.update({
+        //     name: req.body.name,
+        //     email: req.body.email,
+        //     phoneNumber: req.body.phoneNumber,
+        //     address: req.body.address,
+        //     city: req.body.city,
+        //     state: req.body.state,
+        //     zip: req.body.zip,
+        //     aboutme: req.body.aboutme
+
+        // }, req.user.id, null, function(result) {
+        //     console.log(result);
+        //     if (result.affectedRows == 0) {
+        //         // If no rows were changed, then the ID must not exist, so 404
+        //         return res.status(404).end();
+        //       } else {
+        //         res.status(200).end();
+        //       }
+        // })
+    });
+
+    app.put("/password",(req, res) => {
+        console.log("*******************");
+        console.log(req.user);
+        console.log(req.body);
+
+        db.User.update({
+           password: req.body.password
+        }, {
+          where: {
+            id: req.user.id
+          }
+        }).then(function(result) {
+            console.log(result);
+            if (result.affectedRows == 0) {
+                // If no rows were changed, then the ID must not exist, so 404
+                return res.status(404).end();
+              } else {
+                res.status(200).end();
+              }
+        })
+    })
 
 }

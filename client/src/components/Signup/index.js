@@ -35,17 +35,17 @@ class Signup extends React.Component {
             return true;
         }
         else {
-            this.setState({ notice:  "Password not match!" });
+            this.setState({ notice:  "Passwords not match!" });
             return false;
         }
     }
 
     checkPasswordLength (pw) {
-        if (pw.length>=8) {
+        if (pw.length>=6) {
             return true;
         }
         else {
-            this.setState({ notice: "Password should be at least 8 charactors.!" });
+            this.setState({ notice: "Password should be at least 6 charactors!" });
             return false;
         }
     }
@@ -57,20 +57,19 @@ class Signup extends React.Component {
         e.preventDefault();
         console.log("clicked");
 
-        // if (this.alphanumeric(this.state.password) && this.checkConfirmMatch(this.state.password, this.state.confirm_password) && this.checkPasswordLength(this.state.password)) {
-        //     console.log("all requirements met.")
-        // }
+        
         if (this.alphanumeric(this.state.password) &&
         this.checkPasswordLength(this.state.password) &&
         this.checkConfirmMatch(this.state.password, this.state.confirm_password)) {
-          axios.post('http://localhost:8080/api/signup', { email: this.state.username,
+        
+          axios.post('http://192.168.0.11:8080/api/signup', { email: this.state.username,
             password: this.state.password   
         })
             .then( (response) => {
                 console.log(response);  
                 this.clearState();
                 this.setState( {notice: "success!"})
-                setTimeout(() =>{console.log(window.location.replace("/login"))}, 5000);
+                setTimeout(() =>{console.log(window.location.replace("/login"))}, 2000);
               })
               .catch(function (error) {
                 console.log(error);
