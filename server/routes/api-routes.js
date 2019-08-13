@@ -40,18 +40,9 @@ module.exports = function (app) {
                 res.status(200).end();
             });
             } else {
-                res.send("This email is existing. Please change a new one, or use this email to log in.")
+                res.send("This email is existing. Please change a new one, or use it to log in.")
             }
         })
-
-        
-        // db.User.create({
-        //     email: req.body.email,
-        //     password: req.body.password
-        // }).then(function (data) {
-        //     console.log({ data: data })
-        // });
-    
 
         // console.log({ res: res });
         // res.redirect("/login");

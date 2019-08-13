@@ -51,7 +51,7 @@ app.use(passport.session());
 require("./routes/api-routes.js")(app);
 require("./routes/html-routes.js")(app);
 require("./controllers/contacts_controller")(app);
-require("./controllers/users_controller")(app);
+//require("./controllers/users_controller")(app);
 
 // Import routes and give the server access to them.
 // var routes = require("./controllers/contacts_controller");
