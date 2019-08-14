@@ -30,18 +30,18 @@ class Signup extends React.Component {
         }
     }
 
-    checkConfirmMatch (first, second) {
+    checkConfirmMatch(first, second) {
         if (first === second) {
             return true;
         }
         else {
-            this.setState({ notice:  "Passwords not match!" });
+            this.setState({ notice: "Passwords not match!" });
             return false;
         }
     }
 
-    checkPasswordLength (pw) {
-        if (pw.length>=6) {
+    checkPasswordLength(pw) {
+        if (pw.length >= 6) {
             return true;
         }
         else {
@@ -57,26 +57,33 @@ class Signup extends React.Component {
         e.preventDefault();
         console.log("clicked");
 
-        
+
         if (this.alphanumeric(this.state.password) &&
-        this.checkPasswordLength(this.state.password) &&
-        this.checkConfirmMatch(this.state.password, this.state.confirm_password)) {
-        
-          axios.post('http://192.168.0.11:8080/api/signup', { email: this.state.username,
-            password: this.state.password   
-        })
-            .then( (response) => {
-                console.log(response);  
-                this.clearState();
-                this.setState( {notice: "success!"})
-                setTimeout(() =>{console.log(window.location.replace("/login"))}, 2000);
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+            this.checkPasswordLength(this.state.password) &&
+            this.checkConfirmMatch(this.state.password, this.state.confirm_password)) {
+
+            axios.post('http://localhost:8080/api/signup', {
+                email: this.state.username,
+                password: this.state.password
+            })
+                .then((response) => {
+                    console.log(response);
+
+                    this.clearState();
+                    if (response.data !== "") {
+                        this.setState({ notice: response.data })
+                    } else {
+                        this.setState({ notice: "success!" })
+                        setTimeout(() => { console.log(window.location.replace("/login")) }, 2000);
+                    }
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
 
         }
-        
+
     }
 
     clearState() {
@@ -109,9 +116,9 @@ class Signup extends React.Component {
                                         <div className="form-group">
                                             <label htmlFor="password" className="text-info">Confirm Password:</label><br />
                                             <input type="password" name="confirm-password" id="confirm-password" className="form-control" value={this.state.confirm_password} onChange={e => { this.setState({ confirm_password: e.target.value }) }} />
-                                            <p style={this.state.notice === "success!"? {color:'green'}:{color:'red'}}>{this.state.notice}</p>
+                                            <p style={this.state.notice === "success!" ? { color: 'green' } : { color: 'red' }}>{this.state.notice}</p>
                                         </div>
-                                        <div  className="form-group">
+                                        <div className="form-group">
                                             <button id="signup-button" className="btn btn-info btn-md" onClick={this.handleSubmit}>submit</button>
                                         </div>
                                         <div id="account-link" className="text-right">
