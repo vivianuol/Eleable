@@ -19,7 +19,7 @@ var allowedOrigins = ['http://localhost:3000',
                       'http://192.168.0.11:3000'];
 app.use("*", cors( function(req, callback){
   if (allowedOrigins.indexOf(req.header('Origin')) !== -1) {
-    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+    corsOptions = { origin: true, credentials: true } // reflect (enable) the requested origin in the CORS response
   } else {
     corsOptions = { origin: false } // disable CORS for this request
   }

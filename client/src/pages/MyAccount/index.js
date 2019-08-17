@@ -27,7 +27,7 @@ class MyAccount extends React.Component {
 
     fetchUserInfo() {
         //NOTICE: Each time you need user_data, you have to use {withCredentials: true}
-        axios.get('http://192.168.0.11:8080/user', { withCredentials: true }).then(res => {
+        axios.get('/api/user', { withCredentials: true }).then(res => {
             //console.log("response" + JSON.stringify(res));
             console.log("----------------");
             console.log(res.data);
@@ -60,7 +60,7 @@ class MyAccount extends React.Component {
             zip: this.state.zip,
             aboutme: this.state.aboutme
         }
-        axios.put('http://192.168.0.11:8080/user/', userInfo, {
+        axios.put('/api/user/', userInfo, {
             withCredentials: true,
         }).then(function (response) {
             console.log(response);
@@ -82,7 +82,7 @@ class MyAccount extends React.Component {
             this.setState({ notice: "Passwords are not identical. Confirm your password again." })
         } else if (pw === cpw) {
             //this.setState({ notice: "Pass the confirm step." })
-            axios.put('http://192.168.0.11:8080/password', { password: pw }, { withCredentials: true }).then(function (response) {
+            axios.put('/api/password', { password: pw }, { withCredentials: true }).then(function (response) {
                 console.log(response);
                 
             }).catch(function (error) {

@@ -19,7 +19,6 @@ class AddNew extends React.Component {
 
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    //this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
   }
@@ -42,7 +41,7 @@ class AddNew extends React.Component {
     formData.append('image', this.state.image)
     //in formData.append("name", state_feild), 'name' is the FormControl name, state_feild is the state name.
     console.log(formData)
-    axios.post('http://localhost:8080/contact',
+    axios.post('/api/contact',
       formData, {
         headers: {
           'Content-Type': 'multipart/form-data'

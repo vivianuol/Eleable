@@ -33,7 +33,7 @@ module.exports = function(app) {
   });
 
   //route for logging user out
-    app.get("/logout", function(req, res) {
+  app.get("/logout", function(req, res) {
       req.logout();
       res.redirect('/');
   });

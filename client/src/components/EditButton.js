@@ -33,7 +33,7 @@ class EditButton extends React.Component {
   }
 
   fetchContactValue(id) {
-    axios.get(`http://localhost:8080/contacts/${id}`, {withCredentials: true})
+    axios.get(`/api/contacts/${id}`, {withCredentials: true})
       .then((response) => {
         // console.log(response.data[0]);
         // let defaultValue = response.data[0];
@@ -70,7 +70,7 @@ class EditButton extends React.Component {
       formData.append('image', this.state.image) 
 
     
-    axios.put(`http://localhost:8080/contact/${this.props.id}`, 
+    axios.put(`/api/contact/${this.props.id}`, 
       formData, {
         headers: {
           'content-Type':

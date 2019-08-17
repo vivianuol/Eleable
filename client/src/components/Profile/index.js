@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Profile.css";
-import Navbar from "./Navbar";
+import Navbar from "../Navbar";
 import axios from 'axios';
 
 class Profile extends Component {
@@ -14,7 +14,7 @@ class Profile extends Component {
 
     fetchUserInfo() {
         //NOTICE: Each time you need user_data, you have to use {withCredentials: true}
-        axios.get('http://localhost:8080/user', { withCredentials: true }).then(res => {
+        axios.get('/api/user', { withCredentials: true }).then(res => {
             //console.log("response" + JSON.stringify(res));
             console.log("***------------------***");
             console.log(res.data);
@@ -28,13 +28,13 @@ class Profile extends Component {
         this.fetchUserInfo();
     }
 
-    handleSubmit() {
-        axios.get('http://localhost:8080/logout', () => {
-            console.log('logout');
-        }).then(res => {
-            window.location.replace('login')
-        })
-    }
+    // handleSubmit() {
+    //     axios.get('http://localhost:8080/logout', () => {
+    //         console.log('logout');
+    //     }).then(res => {
+    //         window.location.replace('login')
+    //     })
+    // }
 
     render() {
         return (

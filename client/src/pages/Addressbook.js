@@ -10,7 +10,7 @@ class Addressbook extends React.Component {
         super ();
         this.state = {
             contactlist: [],
-            //structure of contactlist is like:
+            //the structure of contactlist is like:
             //{
             //     "id": 1,
             //     "first_name": "John",
@@ -27,7 +27,7 @@ class Addressbook extends React.Component {
 
      
     fetchContactList() {
-        axios.get('http://localhost:8080/contacts/', {withCredentials: true}).then(res => {
+        axios.get('/api/contacts/', {withCredentials: true}).then(res => {
         //console.log("@#$%^&*()")    
         //console.log(res)
         this.setState({ 

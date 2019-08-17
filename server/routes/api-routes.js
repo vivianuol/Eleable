@@ -68,7 +68,7 @@ module.exports = function (app) {
     });
 
     //munipulate users(table) data
-    app.get("/user", function (req, res) {
+    app.get("/api/user", function (req, res) {
         console.log("------------------");
         console.log(req.user);
         if(!req.user){
@@ -92,7 +92,7 @@ module.exports = function (app) {
     // }).then( (result) => res.json(result))
     // );
 
-    app.put("/user",(req, res) => {
+    app.put("/api/user",(req, res) => {
         console.log("^^^^^^^^^^^^^^^^^^^^^");
         console.log(req.user);
         console.log(req.body);
@@ -141,7 +141,7 @@ module.exports = function (app) {
         // })
     });
 
-    app.put("/password",(req, res) => {
+    app.put("/api/password",(req, res) => {
         console.log("*******************");
         console.log(req.user);
         console.log(req.body);

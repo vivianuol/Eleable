@@ -28,7 +28,7 @@ const upload = multer({
 
 
   // Create all our routes and set up logic within those routes where required.
-  app.get("/contacts/", function (req, res) {
+  app.get("/api/contacts/", function (req, res) {
     console.log("+++++++++++++++++++");
     console.log(req.user);
     if (!req.user) {
@@ -46,7 +46,7 @@ const upload = multer({
     }
 });
 
-  app.get("/contacts/:id", function (req, res) {
+  app.get("/api/contacts/:id", function (req, res) {
     console.log("------------------");
     console.log(req.user);
     if(!req.user){
@@ -66,7 +66,7 @@ const upload = multer({
 
   // new post method for all input type including "file"
 
-  app.post("/contact", (req, res) => {
+  app.post("/api/contact", (req, res) => {
     upload(req, res, (err) => {
       // console.log("Request ---", JSON.stringify(req.body));
       // console.log("Request file ---", req.file.filename);
@@ -97,7 +97,7 @@ const upload = multer({
 
   });
 
-  app.put("/contact/:id", (req, res) => {
+  app.put("/api/contact/:id", (req, res) => {
     console.log("^^^^^^^^^^^^^^^^^^^^^^")
     //console.log(req.user)
     var id = req.params.id;
@@ -133,7 +133,7 @@ const upload = multer({
   })
 
 
-  app.delete("/contact/:id", function (req, res) {
+  app.delete("/api/contact/:id", function (req, res) {
     console.log("!---------------------------!")
     console.log(req.user)
     var uid = req.user.id;

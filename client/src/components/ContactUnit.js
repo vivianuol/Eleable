@@ -25,7 +25,7 @@ class ContactUnit extends React.Component {
     }
 
     handleDelete() {
-        axios.delete(`http://localhost:8080/contact/${this.props.id}`,{ withCredentials: true})
+        axios.delete(`/api/contact/${this.props.id}`,{ withCredentials: true})
             .then(res => {
                 console.log(res);
                 console.log(res.data);
@@ -43,7 +43,7 @@ class ContactUnit extends React.Component {
                     marginRight: 'auto',
                     borderRadius: '50%',
                     border: '1px solid gray'
-                }} variant="top" src={this.props.image !== null ?"http://localhost:8080/uploads/" + this.props.image : "http://localhost:8080/uploads/IMAGE-1563737508573.JPG"} />
+                }} variant="top" src={this.props.image !== null ?"/uploads/" + this.props.image : "/uploads/IMAGE-1563737508573.JPG"} />
                 <Card.Body>
                     <Card.Title>{this.props.first_name}, {this.props.last_name}</Card.Title>
                     <Card.Text>Phone: {this.props.phone_number}</Card.Text>

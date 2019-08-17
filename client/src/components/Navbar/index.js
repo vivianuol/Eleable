@@ -16,7 +16,7 @@ class Navbar extends React.Component {
     }
 
     handleSubmit() {
-        axios.get('http://localhost:8080/logout', () => {
+        axios.get('/logout', () => {
             console.log('logout');
         }).then(res => {
             window.location.replace('login') 

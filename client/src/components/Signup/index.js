@@ -62,7 +62,7 @@ class Signup extends React.Component {
             this.checkPasswordLength(this.state.password) &&
             this.checkConfirmMatch(this.state.password, this.state.confirm_password)) {
 
-            axios.post('http://localhost:8080/api/signup', {
+            axios.post('/api/signup', {
                 email: this.state.username,
                 password: this.state.password
             })
