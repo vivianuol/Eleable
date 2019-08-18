@@ -21,13 +21,13 @@ class Login extends React.Component {
             email: this.state.email,
             password: this.state.password
         };
-        console.log({"userData": userData});
+        // console.log({"userData": userData});
       
         axios.post("/api/login", {
             email: this.state.email,
             password: this.state.password
           }, { withCredentials: true}).then((response)=>{
-              console.log("response: " + JSON.stringify(response));
+            //   console.log("response: " + JSON.stringify(response));
             this.setState({notice: "success!"});
             setTimeout(() =>window.location.replace('addressbook'), 3000);
           }).catch((err) => {
@@ -57,7 +57,7 @@ class Login extends React.Component {
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="password" className="text-info">Password:</label><br />
-                                            <input type="password" name="password" id="password" className="form-control" value={this.state.password} onChange={e => { this.setState({ password: e.target.value }); console.log(e.target.value)}} />
+                                            <input type="password" name="password" id="password" className="form-control" value={this.state.password} onChange={e => { this.setState({ password: e.target.value })}} />
                                            
                                         </div>
                                         <div className="form-group">

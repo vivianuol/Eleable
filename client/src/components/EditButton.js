@@ -121,7 +121,7 @@ class EditButton extends React.Component {
                   last Name:
                           </InputGroup.Text>
               </InputGroup.Prepend>
-              <FormControl value={this.state.last_name} onChange={e => { this.setState({ last_name: e.target.value }); console.log("lastname:" + this.state.last_name) }} id="basic-url" aria-describedby="basic-addon3" />
+              <FormControl value={this.state.last_name} onChange={e => { this.setState({ last_name: e.target.value })}} id="basic-url" aria-describedby="basic-addon3" />
             </InputGroup>
             <label htmlFor="basic-url">Contact Phone</label>
             <InputGroup className="mb-3">

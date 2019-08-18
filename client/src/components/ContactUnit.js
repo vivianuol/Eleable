@@ -47,8 +47,8 @@ class ContactUnit extends React.Component {
                 <Card.Body>
                     <Card.Title>{this.props.first_name}, {this.props.last_name}</Card.Title>
                     <Card.Text>Phone: {this.props.phone_number}</Card.Text>
-                    <Card.Text>Email:{this.props.email}</Card.Text>
-                    <Card.Text>Social link:{this.props.social_link == null? '' :this.props.social_link}</Card.Text>
+                    <Card.Text>Email:  {this.props.email}</Card.Text>
+                    <Card.Text>Social link:  {this.props.social_link == null? '' :this.props.social_link}</Card.Text>
                 </Card.Body>
                 {/* <Button variant="outline-primary" onClick={this.handleShow}>Edit</Button> */}
                 <EditButton id={this.props.id} first_name={this.props.first_name} last_name={this.props.last_name} phone_number={this.props.phone_number} isUpdated={this.props.isUpdated} />
