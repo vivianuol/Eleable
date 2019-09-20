@@ -1,6 +1,6 @@
 import React from 'react';  
 import { Router, Route } from 'react-router-dom';
-import Landing from './pages/Landing';
+import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Addressbook from './pages/Addressbook';
 import MyAccount from './pages/MyAccount';
@@ -18,7 +18,7 @@ function App() {
   return (
     <Router history={history}>
       <div id="bg">
-        <Route exact path="/" component = {Landing} />
+        <Route exact path="/" component = {Login} />
         <Route exact path="/login" component = {Landing} />
         <Route exact path="/signup" component = {Signup} />
         <Route exact path="/addressbook" component = {Addressbook} />

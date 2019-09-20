@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React from 'react';  
+import { Router, Route } from 'react-router-dom';
+import { createBrowserHistory } from "history";
+import Login from './components/containers/Login';
+import Contactlist from './components/containers/Contactlist';
+//import history from './history';
 import './App.css';
+
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap-grid.min.css';
+// import 'bootstrap/dist/css/bootstrap-reboot.min.css';
+// import 'bootstrap';
+// import $ from 'jquery';
+// window.jQuery = window.$ = $;
+
+const history = createBrowserHistory()
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router history={history}>
+      <div id="bg">
+        
+        <Route exact path="/" component = {Login} />
+        <Route exact path="/login" component = {Login} />
+        {/* <Route exact path="/signup" component = {Signup} /> */}
+         <Route exact path="/Contactlist" component = {Contactlist} />
+         {/* <Route exact path="/myaccount" component = {MyAccount} /> */}
+ 
+       </div>
+    </Router>
   );
 }
 
 export default App;
+

@@ -1,6 +1,5 @@
 // Requiring necessary npm middleware packages 
 const express= require("express");
-
 const session = require("express-session");
 // Requiring passport as we've configured it
 const passport = require("./config/passport");
@@ -18,6 +17,7 @@ var cors = require('cors');
 var allowedOrigins = ['http://localhost:3000',
                       'http://192.168.0.11:3000',
                       'http://eleable.s3-website-us-west-2.amazonaws.com'];
+
 app.use("*", cors( function(req, callback){
   if (allowedOrigins.indexOf(req.header('Origin')) !== -1) {
     corsOptions = { origin: true, credentials: true } // reflect (enable) the requested origin in the CORS response
@@ -54,10 +54,6 @@ require("./routes/html-routes.js")(app);
 require("./controllers/contacts_controller")(app);
 //require("./controllers/users_controller")(app);
 
-// Import routes and give the server access to them.
-// var routes = require("./controllers/contacts_controller");
-
-// app.use('/api/noauth', routes);
 
 //Without Authentication
 // Start our server so that it can begin listening to client requests.
