@@ -51,7 +51,7 @@ class Login extends React.Component {
     }
 
     render() {
-        const { user, error, notice } = this.props;
+        const { notice } = this.props;
 
         if (this.shouldComponentRender())
             return (<img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="loading icon" />)

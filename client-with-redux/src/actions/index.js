@@ -3,18 +3,18 @@ import axios from 'axios';
 
 export const signupPostPending = () => {
     return {
-        type: C.SIGN_UP_PENDING
+        type: C.SIGNUP_PENDING
     }
 }
 export const signupPostSuccess = (status) => {
     return {
-        type: C.SIGN_UP_SUCCESS,
+        type: C.SIGNUP_SUCCESS,
         payload: status
     }
 }
 export const signupPostError = (error) => {
     return {
-        type: C.SIGN_UP_SUCCESS,
+        type: C.SIGNUP_ERROR,
         payload: error
     }
 }
@@ -206,10 +206,10 @@ export const loginAccount = (data) => (dispatch, getState) => {
 
 export const signupAccount = (data) => (dispatch, getState) => {
     let newuser = {
-        email: data.email,
+        email: data.username,
         password: data.password
     }
-    console.log("user:" + JSON.stringify(user));
+    console.log("user:" + JSON.stringify(newuser));
     dispatch(signupPostPending());
     axios.post("http://localhost:8080/api/signup", newuser, { withCredentials: true})
       .then((res)=>{
@@ -217,7 +217,7 @@ export const signupAccount = (data) => (dispatch, getState) => {
         if (res.status === 200) {
             dispatch(signupPostSuccess())
             dispatch(putOnNotice("You've successfully registered to Eleable!"))
-        // setTimeout(() =>window.location.replace('addressbook'), 2000);
+            setTimeout(() =>window.location.replace('addressbook'), 3000);
         } else {
             dispatch(putOnNotice("Our service has encountered some unexpected issues, please try again later."))
         }

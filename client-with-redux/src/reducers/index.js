@@ -3,28 +3,28 @@ import * as C from '../actions/types';
 
 
 export function user(userState = {
-                                    pending: false,
-                                    user: {
-                                        email: "",
-                                        password: "",
-                                        name: "",
-                                        phoneNumber: "",
-                                        address: "",
-                                        city: "",
-                                        state: "",
-                                        zip: "",
-                                        aboutme: ""
-                                    },
-                                    error: null
-                                }, action) {
+    pending: false,
+    user: {
+        email: "",
+        password: "",
+        name: "",
+        phoneNumber: "",
+        address: "",
+        city: "",
+        state: "",
+        zip: "",
+        aboutme: ""
+    },
+    error: null
+}, action) {
     switch (action.type) {
         case C.LOGIN_PENDING:
             return {
                 ...userState,
                 pending: true
-                }
+            }
         case C.LOGIN_SUCCESS:
-            return  {
+            return {
                 ...userState,
                 pending: false,
                 user: action.payload
@@ -69,7 +69,7 @@ export function contacts(contactsState = {
 }
 
 
-function contact(contactState = {
+export function contact(contactState = {
     pending: false,
     contact: {
         first_name: "",
@@ -103,7 +103,7 @@ function contact(contactState = {
     }
 }
 
-function notice(notice = null, action) {
+export function notice(notice = null, action) {
     switch (action.type) {
         case C.ADD_NOTICE:
             return action.payload
@@ -113,5 +113,4 @@ function notice(notice = null, action) {
 }
 
 
-
-export default combineReducers({ user, contacts, contact, notice})
+export default combineReducers({ user, contacts, contact, notice })

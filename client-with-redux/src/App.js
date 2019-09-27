@@ -1,9 +1,14 @@
 import React from 'react';  
-import { Router, Route } from 'react-router-dom';
-import { createBrowserHistory } from "history";
+import { Router, Route, Switch } from 'react-router-dom';
+// import { createBrowserHistory } from "history";
+import {history} from "./store";
 import Login from './components/containers/Login';
-import Contactlist from './components/containers/Contactlist';
-//import history from './history';
+import Signup from './components/containers/Signup';
+import NotFound from './components/ui/NotFound';
+import PrivateRoute from './route/PrivateRoute';
+//should always remember to export module(which means should not empty), before import module; otherwise, it will report the error message in browser like: You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports. 
+
+// import {history} from './store/store';
 import './App.css';
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,20 +18,19 @@ import './App.css';
 // import $ from 'jquery';
 // window.jQuery = window.$ = $;
 
-const history = createBrowserHistory()
+// const history = createBrowserHistory();
 
 function App() {
   return (
     <Router history={history}>
-      <div id="bg">
-        
-        <Route exact path="/" component = {Login} />
+      <Switch>
+        <Route exact path="/404" component={NotFound} />
+        {/* <PrivateRoute exact path="/" component = {Login} /> */}
         <Route exact path="/login" component = {Login} />
-        {/* <Route exact path="/signup" component = {Signup} /> */}
-         <Route exact path="/Contactlist" component = {Contactlist} />
+        <Route exact path="/signup" component = {Signup} />
          {/* <Route exact path="/myaccount" component = {MyAccount} /> */}
- 
-       </div>
+        <Route component={NotFound} />
+      </Switch>
     </Router>
   );
 }

@@ -1,11 +1,32 @@
 import React from 'react';
 import "./Signup.css";
-import axios from 'axios';
 
+class Signup extends React.Component {
+    state = {
+        username: "",
+        password: "",
+        confirm_password: "",
+        preCheckNotice: []
+    }
 
-function Signup ({username, password, notice}) {
-
-    
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const { password, confirm_password } = this.state;
+        const { onSignup } = this.props;
+        if (password !== confirm_password) {
+            this.setState({ preCheckNotice: [...this.state.preCheckNotice, "Passwords do not match! Please confirm your password again!"] })
+        } else {
+            //put API call
+            let register={
+                username: this.state.username,
+                password: this.state.password
+            }
+            onSignup(register);
+            console.log("Signup submitted.")
+        }
+    }
+    render() {
+        const { notice } = this.props;
         return (
             <div>
                 <div id="signup">
@@ -26,11 +47,15 @@ function Signup ({username, password, notice}) {
                                         <div className="form-group">
                                             <label htmlFor="password" className="text-info">Confirm Password:</label><br />
                                             <input type="password" name="confirm-password" id="confirm-password" className="form-control" value={this.state.confirm_password} onChange={e => { this.setState({ confirm_password: e.target.value }) }} />
-                                            <p style={this.state.notice === "success!" ? { color: 'green' } : { color: 'red' }}>{this.state.notice}</p>
+                                            
+                                        </div>
+                                        <div>
+                                            <p className="message">{this.state.preCheckNotice.toString()}</p>
                                         </div>
                                         <div className="form-group">
                                             <button id="signup-button" className="btn btn-info btn-md" onClick={this.handleSubmit}>submit</button>
                                         </div>
+                                        <p style={notice === "You've successfully registered to Eleable!" ? { color: 'green' } : { color: 'red' }}>{notice}</p>
                                         <div id="account-link" className="text-right">
                                             Have an account?
                                             <a href="/" className="text-info">Login here</a>
@@ -44,6 +69,7 @@ function Signup ({username, password, notice}) {
             </div>
         );
     }
+}
 
 
 export default Signup;

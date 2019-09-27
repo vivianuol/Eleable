@@ -1,6 +1,6 @@
-// export const SIGNUP_PENDING = 'SIGN_UP_PENDING';
-// export const SIGNUP_SUCCESS = 'SIGN_UP_SUCCESS';
-// export const SIGNUP_ERROR = 'SIGN_UP_ERROR';
+export const SIGNUP_PENDING = 'SIGN_UP_PENDING';
+export const SIGNUP_SUCCESS = 'SIGN_UP_SUCCESS';
+export const SIGNUP_ERROR = 'SIGN_UP_ERROR';
 
 export const LOGIN_PENDING = 'LOGIN_PENDING';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';

@@ -2,9 +2,11 @@ import { signupAccount } from '../../actions';
 import Signup from '../ui/Signup';
 import {connect} from 'react-redux';
 
-const mapStateToProps = state => ({
-    notice: state.notice
-})
+const mapStateToProps = state => (
+   {
+       notice: state.notice
+    }
+)
 
 const mapDispatchToProps = dispatch => {
     return {
