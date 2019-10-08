@@ -4,9 +4,13 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
+    "bootstrap": "^4.3.1",
     "date-fns": "^2.3.0",
     "history": "^4.10.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0",
     "react": "^16.9.0",
+    "react-bootstrap": "^1.0.0-beta.12",
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.1",
     "react-router": "^5.0.1",
@@ -15,6 +19,7 @@
     "redux": "^4.0.4",
     "redux-first-history": "^4.0.5",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "thunk": "0.0.1"
   },

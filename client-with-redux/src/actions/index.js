@@ -37,6 +37,7 @@ export const loginPostError = (error) => {
     }
 }
 
+
 export const fetchContactsPending = () => {
     return {
         type: C.FETCH_CONTACTS_PENDING
@@ -75,21 +76,42 @@ export const fetchContactError = (error) => {
     }
 }
 
-
-export const putContactError = (error) => {
+export const postContactPending = () => {
     return {
-        type: C.PUT_ONECONTACT_ERROR,
+        type: C.POST_ONECONTACT_PENDING
+    }
+}
+export const postContactSuccess = (data) => {
+    return {
+        type: C.POST_ONECONTACT_SUCCESS,
+        payload: data
+    }
+}
+
+export const postContactError = (error) => {
+    return {
+        type: C.POST_ONECONTACT_ERROR,
         payload: error
     }
 }
+
+
 export const putContactPending = () => {
     return {
         type: C.PUT_ONECONTACT_PENDING
     }
 }
-export const putContactSuccess = () => {
+export const putContactSuccess = (data) => {
     return {
         type: C.PUT_ONECONTACT_SUCCESS,
+        payload: data
+    }
+}
+
+export const putContactError = (error) => {
+    return {
+        type: C.PUT_ONECONTACT_ERROR,
+        payload: error
     }
 }
 
@@ -124,10 +146,17 @@ export const refreshPage = () => {
     }
 }
 
+export const userLogout = () => {
+    return {
+        type: C.USER_LOGOUT
+    }
+}
+
+
 export const fetchContacts = () => (dispatch, getState) => {
 
     dispatch(fetchContactsPending());
-    axios.get('http://localhost:8080/api/contacts/')
+    axios.get('http://localhost:8080/api/contacts/', {withCredentials: true})
         .then(res => {
             if (res.error) {
                 throw (res.error);
@@ -142,7 +171,7 @@ export const fetchContacts = () => (dispatch, getState) => {
 export const fetchOneContact = (id) => (dispatch, getState) => {
 
     dispatch(fetchContactPending());
-    axios.get(`http://localhost:8080/api/contacts/${id}`)
+    axios.get(`http://localhost:8080/api/contacts/${id}`, {withCredentials: true})
         .then(res => {
             if (res.error) {
                 throw (res.error);
@@ -154,27 +183,82 @@ export const fetchOneContact = (id) => (dispatch, getState) => {
         })
 }
 
-export const deleteOneContact = (id) => (dispatch, getState) => {
-
-    dispatch(deleteContactPending());
-    axios.delete(`http://localhost:8080/api/contact/${id}`)
+export const postOneContact = ( data ) => (dispatch, getState) => 
+{
+    dispatch(postContactPending());
+    axios.post(`http://localhost:8080/api/contact/`, data, {headers: {
+          'content-Type':
+          'multipart/form-data'
+        }, withCredentials: true})
         .then(res => {
             if (res.error) {
                 throw (res.error);
             }
-            dispatch(deleteContactSuccess(),
+            dispatch(postContactSuccess(data)
             )
 
             dispatch(fetchContactsPending())
 
-            return axios.get('http://localhost:8080/api/contacts/')
+            return axios.get('http://localhost:8080/api/contacts/',  {withCredentials: true})
         })
             .then(res => {
                 if (res.error) {
                     throw (res.error);
                 }
-                dispatch(fetchContactsSuccess(res.data.contacts),
-    
+                dispatch(fetchContactsSuccess(res.data.contacts)
+                )
+        })
+}
+
+
+export const updateOneContact = (id, contact) => (dispatch, getState) => {
+
+    dispatch(putContactPending());
+    axios.put(`http://localhost:8080/api/contact/${id}`,  contact, {headers: {
+          'content-Type':
+          'multipart/form-data'
+        }, withCredentials: true})
+        .then(res => {
+            if (res.error) {
+                throw (res.error);
+            }
+            dispatch(putContactSuccess(contact)
+            )
+
+            dispatch(fetchContactsPending())
+
+            return axios.get('http://localhost:8080/api/contacts/',  {withCredentials: true})
+        })
+            .then(res => {
+                if (res.error) {
+                    throw (res.error);
+                }
+                dispatch(fetchContactsSuccess(res.data.contacts)
+                )
+        })
+}
+
+
+export const deleteOneContact = (id) => (dispatch, getState) => {
+
+    dispatch(deleteContactPending());
+    axios.delete(`http://localhost:8080/api/contact/${id}`, {withCredentials: true})
+        .then(res => {
+            if (res.error) {
+                throw (res.error);
+            }
+            dispatch(deleteContactSuccess()
+            )
+
+            dispatch(fetchContactsPending())
+
+            return axios.get('http://localhost:8080/api/contacts/',  {withCredentials: true})
+        })
+            .then(res => {
+                if (res.error) {
+                    throw (res.error);
+                }
+                dispatch(fetchContactsSuccess(res.data.contacts)
                 )
         })
 }
@@ -190,9 +274,9 @@ export const loginAccount = (data) => (dispatch, getState) => {
       .then((res)=>{
           console.log("response: " + JSON.stringify(res.status));
         if (res.status === 200) {
-            dispatch(loginPostSuccess())
             dispatch(putOnNotice("Login success!"))
-        // setTimeout(() =>window.location.replace('addressbook'), 2000);
+            dispatch(loginPostSuccess())
+        setTimeout(() =>window.location.replace('/'), 2000);
         } else {
             dispatch(putOnNotice("Our service has encountered some unexpected issues, please try again later."))
         }
@@ -217,7 +301,7 @@ export const signupAccount = (data) => (dispatch, getState) => {
         if (res.status === 200) {
             dispatch(signupPostSuccess())
             dispatch(putOnNotice("You've successfully registered to Eleable!"))
-            setTimeout(() =>window.location.replace('addressbook'), 3000);
+            setTimeout(() =>window.location.replace('login'), 3000);
         } else {
             dispatch(putOnNotice("Our service has encountered some unexpected issues, please try again later."))
         }
@@ -228,3 +312,16 @@ export const signupAccount = (data) => (dispatch, getState) => {
             dispatch(putOnNotice("Sorry, please check your username and register again."))
       });
 }
+
+
+export const logout = () => (dispatch, getState) => {
+     dispatch(userLogout());
+    //  axios.get("http://localhost:8080/logout", { withCredentials: true} ).then((res)=>{
+    //     console.log("response: " + JSON.stringify(res.status));
+    //   if (res.status === 200) {
+    //     res.send(status).end()
+    //   } else {
+    //     dispatch(putOnNotice("Oops, some thing went wrong~"))
+    //   }
+    // })
+  }  

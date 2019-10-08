@@ -18,8 +18,8 @@
       })
     },
 
-    update: function(objColVals, id, cb) {
-      orm.update("contacts", objColVals, id, function(res) {
+    update: function(objColVals, uid, id, cb) {
+      orm.update("contacts", objColVals, uid, id, function(res) {
         cb(res);
       });
     },

@@ -2,12 +2,15 @@ import {loginAccount} from '../../actions';
 import Login from '../ui/Login';
 import {connect} from 'react-redux';
 
-const mapStateToProps = state => ({
-    user: state.user.user,
-    pending: state.user.pending,
-    error: state.user.error,
-    notice: state.notice
-})
+const mapStateToProps = state => {
+    console.log("isPending: " + state.user.pending)
+    return {
+        user: state.user.user,
+        pending: state.user.pending,
+        error: state.user.error,
+        notice: state.notice
+        }
+}
 
 const mapDispatchToProps = dispatch => {
     return {

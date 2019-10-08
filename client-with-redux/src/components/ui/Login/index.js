@@ -10,50 +10,44 @@ class Login extends React.Component {
             password: '',
         }
 
-
-        this.shouldComponentRender = this.shouldComponentRender.bind(this);
-
-        this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handlePasswordChange = this.handlePasswordChange.bind(this);
-
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleEmailChange(event) {
+    handleEmailChange = (event) => {
         this.setState({
             email: event.target.value,
         })
         console.log("email: " + this.state.email);
     }
 
-    handlePasswordChange(event) {
+    handlePasswordChange = (event)=> {
         this.setState({
             password: event.target.value
         });
         console.log("password: " + this.state.password);
     }
 
-    shouldComponentRender() {
-        const { pending } = this.props;
-        if (pending === false) return false;
-        return true;
-    }
+    // shouldComponentRender() {
+    //     const { pending } = this.props;
+    //     if (pending === false) return false;
+    //     return true;
+    // }
 
-    handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault();
+        const { onLogin } = this.props;
         console.log("clicked");
         console.log("state")
         console.log(this.state)
-        const { onLogin } = this.props;
+        
         onLogin(this.state);
         console.log("login submited.")
 
     }
 
     render() {
-        const { notice } = this.props;
+        const { notice, pending } = this.props;
 
-        if (this.shouldComponentRender())
+        if (pending)
             return (<img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="loading icon" />)
 
         return (

@@ -48,12 +48,18 @@ const upload = multer({
 
   app.get("/api/contacts/:id", function (req, res) {
     console.log("------------------");
-    console.log(req.user);
+
+    var uid = req.user.id;
+    console.log("user id: ", req.user.id);
+
     if(!req.user){
       res.status(401);
     }
+
     var id = req.params.id;
-    contact.one(req.user.id, id, function (result) {
+    console.log("condition ", req.params.id)
+
+    contact.one(uid, id, function (result) {
       var ctcObject = {
         contacts:   result
       };
@@ -78,10 +84,9 @@ const upload = multer({
          res.status(401);
       }
       console.log("*********************")
-      console.log(req.user);
-      console.log("req:")
-      console.log(req);
-      //here is a sync old style call, because we are fetch data from database
+      var uid= req.user.id;
+      console.log("user id: ", uid);
+      
       contact.create([
         "first_name", "last_name", "phone_number", "email", "social_link", "image","user_id"
       ], [
@@ -99,16 +104,18 @@ const upload = multer({
 
   app.put("/api/contact/:id", (req, res) => {
     console.log("^^^^^^^^^^^^^^^^^^^^^^")
-    //console.log(req.user)
+    var uid= req.user.id;
+    console.log("user id: ", uid);
+
     var id = req.params.id;
-    console.log("condition", id);
+    console.log("condition ", id);
  
     upload(req, res, (err) => {
-      // console.log("Request ---", JSON.stringify(req.body));
-      //console.log("request ---");
-      //console.log(req);
-      //console.log("Request file ---", req.file);res.status(200).end();
-      //console.log("Request file ---", req.file.path);
+    //   // console.log("Request ---", JSON.stringify(req.body));
+    //   //console.log("request ---");
+    //   //console.log(req);
+    //   //console.log("Request file ---", req.file);res.status(200).end();
+    //   //console.log("Request file ---", req.file.path);
    
       contact.update({
         first_name: req.body.first_name,
@@ -116,15 +123,13 @@ const upload = multer({
         phone_number: req.body.phone_number,
         email: req.body.email,
         social_link: req.body.social_link,
-        image: !req.file ? null: req.file.filename,
-        user_id: req.user.id
-      }, id, function (result) {
+        image: (!req.file || null ) ? null: req.file.filename,
+        user_id: uid
+      }, uid, id, function (result) {
         console.log(result);
         if (result.affectedRows == 0) {
           // If no rows were changed, then the ID must not exist, so 404
           return res.status(404).end();
-        } else if (!req.file) {
-          return res.send('Please upload a file')
         } else {
           res.status(200).end();
         }

@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import * as C from '../actions/types';
 
-
+  
 export function user(userState = {
     pending: false,
     user: {
@@ -15,7 +15,8 @@ export function user(userState = {
         zip: "",
         aboutme: ""
     },
-    error: null
+    error: null,
+    isLogin: false,
 }, action) {
     switch (action.type) {
         case C.LOGIN_PENDING:
@@ -27,6 +28,7 @@ export function user(userState = {
             return {
                 ...userState,
                 pending: false,
+                isLogin: true,
                 user: action.payload
             }
         case C.LOGIN_ERROR:
@@ -35,6 +37,11 @@ export function user(userState = {
                 pending: false,
                 error: action.error
             }
+        case C.USER_LOGOUT:
+            return {
+                ...userState, 
+                isLogin: false,
+            };
         default:
             return userState
     }
@@ -63,13 +70,28 @@ export function contacts(contactsState = {
                 pending: false,
                 error: action.error
             }
+        case C.POST_ONECONTACT_PENDING:
+            return {
+                ...contactsState,
+                pending: true,
+            }
+        case C.POST_ONECONTACT_SUCCESS:
+            return  {
+                ...contactsState,
+                pending: false,
+            }
+        case C.POST_ONECONTACT_ERROR:
+            return {
+                ...contactsState,
+                error: action.error
+            }
         default:
             return contactsState;
     }
 }
 
 
-export function contact(contactState = {
+export function onecontact(contactState = {
     pending: false,
     contact: {
         first_name: "",
@@ -98,6 +120,21 @@ export function contact(contactState = {
                 pending: false,
                 error: action.error
             }
+        case C.PUT_ONECONTACT_PENDING:
+            return {
+                ...contactState,
+                pending: true,
+            }
+        case C.PUT_ONECONTACT_SUCCESS:
+            return  {
+                ...contactState,
+                pending: false,
+            }
+        case C.PUT_ONECONTACT_ERROR:
+            return {
+                ...contactState,
+                error: action.error
+            }
         default:
             return contactState
     }
@@ -113,4 +150,6 @@ export function notice(notice = null, action) {
 }
 
 
-export default combineReducers({ user, contacts, contact, notice })
+
+
+export default combineReducers({ user, contacts, onecontact, notice })
