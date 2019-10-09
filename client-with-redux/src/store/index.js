@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
-import {user, contacts, onecontact, notice} from '../reducers';
+import {isLogin, user, contacts, onecontact, notice} from '../reducers';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import {createBrowserHistory} from "history";
@@ -18,11 +18,12 @@ const { createReduxHistory, routerMiddleware, routerReducer } = createReduxHisto
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['user']
+  whitelist: ['isLogin']
 }
 
 const rootReducer = combineReducers({
   router: routerReducer,
+  isLogin,
   user,
   contacts,
   onecontact,

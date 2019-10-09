@@ -16,14 +16,12 @@ class Login extends React.Component {
         this.setState({
             email: event.target.value,
         })
-        console.log("email: " + this.state.email);
     }
 
     handlePasswordChange = (event)=> {
         this.setState({
             password: event.target.value
         });
-        console.log("password: " + this.state.password);
     }
 
     // shouldComponentRender() {
@@ -36,7 +34,6 @@ class Login extends React.Component {
         e.preventDefault();
         const { onLogin } = this.props;
         console.log("clicked");
-        console.log("state")
         console.log(this.state)
         
         onLogin(this.state);

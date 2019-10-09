@@ -17,7 +17,7 @@ const ContentRoute =  ({ isLogin }) => {
  
 const mapStateToProps = state => {
   return {
-    isLogin: state.user.isLogin,
+    isLogin: state.isLogin,
   };
 };
 

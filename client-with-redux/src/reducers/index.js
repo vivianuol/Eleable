@@ -1,6 +1,16 @@
 import { combineReducers } from 'redux';
 import * as C from '../actions/types';
 
+export function isLogin(login = false, action) {
+    switch (action.type) {
+        case C.LOGIN_SUCCESS:
+            return true
+        case C.USER_LOGOUT:
+            return false
+        default:
+            return login
+    }
+}
   
 export function user(userState = {
     pending: false,
@@ -16,7 +26,6 @@ export function user(userState = {
         aboutme: ""
     },
     error: null,
-    isLogin: false,
 }, action) {
     switch (action.type) {
         case C.LOGIN_PENDING:
@@ -28,7 +37,6 @@ export function user(userState = {
             return {
                 ...userState,
                 pending: false,
-                isLogin: true,
                 user: action.payload
             }
         case C.LOGIN_ERROR:
@@ -37,11 +45,6 @@ export function user(userState = {
                 pending: false,
                 error: action.error
             }
-        case C.USER_LOGOUT:
-            return {
-                ...userState, 
-                isLogin: false,
-            };
         default:
             return userState
     }
@@ -152,4 +155,4 @@ export function notice(notice = null, action) {
 
 
 
-export default combineReducers({ user, contacts, onecontact, notice })
+export default combineReducers({ isLogin, user, contacts, onecontact, notice })

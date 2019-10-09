@@ -3,7 +3,7 @@ import Login from '../ui/Login';
 import {connect} from 'react-redux';
 
 const mapStateToProps = state => {
-    console.log("isPending: " + state.user.pending)
+    // console.log("isPending: " + state.user.pending)
     return {
         user: state.user.user,
         pending: state.user.pending,
