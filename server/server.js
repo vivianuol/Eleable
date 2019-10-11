@@ -6,6 +6,7 @@ const passport = require("./config/passport");
 
 
 //set up the port
+//deployed in Heroku master. Repo name: fierce-peak-82860
 var PORT = process.env.PORT || 8080;
 
 var app = express();
