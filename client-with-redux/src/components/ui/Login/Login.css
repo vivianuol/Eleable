@@ -1,9 +1,16 @@
-body {
+.body {
     margin: 0;
     padding: 0;
     background-color: #17a2b8;
     height: 100vh;
   }
+
+.logo{
+  margin: 20px;
+  color: whitesmoke;
+  font-family: Tahoma, sans-serif;
+}
+
   #login .container #login-row #login-column #login-box {
     margin-top: 120px;
     max-width: 600px;
@@ -12,8 +19,6 @@ body {
     background-color: #EAEAEA;
   }
   #login .container #login-row #login-column #login-box #login-form {
-    padding: 20px;
-  }
-  #login .container #login-row #login-column #login-box #login-form #register-link {
-    margin-top: -90px;
+    margin: 10px;
+    padding-bottom: 20px;
   }

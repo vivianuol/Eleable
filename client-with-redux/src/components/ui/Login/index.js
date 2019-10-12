@@ -1,5 +1,5 @@
 import React from 'react';
-//import "./Login.css";
+import "./Login.css";
 
 
 class Login extends React.Component {
@@ -48,7 +48,10 @@ class Login extends React.Component {
             return (<img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="loading icon" />)
 
         return (
-            <div>
+            <div className="body">
+                <div className="logo">
+                    <h2>ELEABLE</h2>
+                </div>
                 <div id="login">
                     <div className="container">
                         <div id="login-row" className="row justify-content-center align-items-center">

@@ -28,7 +28,7 @@ class Signup extends React.Component {
     render() {
         const { notice } = this.props;
         return (
-            <div>
+            <div className="body">
                 <div id="signup">
                     <div className="container">
                         <div id="signup-row" className="row justify-content-center align-items-center">
@@ -49,16 +49,17 @@ class Signup extends React.Component {
                                             <input type="password" name="confirm-password" id="confirm-password" className="form-control" value={this.state.confirm_password} onChange={e => { this.setState({ confirm_password: e.target.value }) }} />
                                             
                                         </div>
-                                        <div>
+                                        <div class="form-group">
                                             <p className="message">{this.state.preCheckNotice.toString()}</p>
                                         </div>
                                         <div className="form-group">
                                             <button id="signup-button" className="btn btn-info btn-md" onClick={this.handleSubmit}>submit</button>
+                                            
                                         </div>
                                         <p style={notice === "You've successfully registered to Eleable!" ? { color: 'green' } : { color: 'red' }}>{notice}</p>
                                         <div id="account-link" className="text-right">
                                             Have an account?
-                                            <a href="/" className="text-info">Login here</a>
+                                            <a href="/">Login here</a>
                                         </div>
                                     </form>
                                 </div>
