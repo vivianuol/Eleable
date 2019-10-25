@@ -1,12 +1,24 @@
 .body {
-    margin: 0;
-    padding: 0;
-    background-color: #17a2b8;
-    height: 100vh;
+  position: fixed;
+  top:0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  background-color: #17a2b8;
+  width: 100%;
+  min-height: 100%;
   }
+
+  .brand h2{
+    display: block;
+    margin: 20px;
+    color: whitesmoke;
+    font-family: Tahoma, sans-serif;
+    clear: both;
+  }
+
   #signup .container #signup-row #signup-column #signup-box {
     margin-top: 120px;
-    margin-bottom: 120px;
     max-width: 600px;
     height: 450px;
     border: 1px solid #9c9c9c;
@@ -18,10 +30,17 @@
 
   #signup-button {
     margin-top: 20px;
-
   }
 
-.text-right > a {
+ #account-link {
+   display: flex;
+   flex-wrap: wrap;
     margin: 20px;
     color: #4fa8b6;
   } 
+
+  .text-right > a {
+    margin: auto 5px;
+    color: #5dc6d6;
+    font-weight: bold;
+  }

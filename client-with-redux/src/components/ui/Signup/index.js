@@ -17,7 +17,7 @@ class Signup extends React.Component {
             this.setState({ preCheckNotice: [...this.state.preCheckNotice, "Passwords do not match! Please confirm your password again!"] })
         } else {
             //put API call
-            let register={
+            let register = {
                 username: this.state.username,
                 password: this.state.password
             }
@@ -29,6 +29,9 @@ class Signup extends React.Component {
         const { notice } = this.props;
         return (
             <div className="body">
+                <div className="brand">
+                    <h2>ELEABLE</h2>
+                </div>
                 <div id="signup">
                     <div className="container">
                         <div id="signup-row" className="row justify-content-center align-items-center">
@@ -47,18 +50,18 @@ class Signup extends React.Component {
                                         <div className="form-group">
                                             <label htmlFor="password" className="text-info">Confirm Password:</label><br />
                                             <input type="password" name="confirm-password" id="confirm-password" className="form-control" value={this.state.confirm_password} onChange={e => { this.setState({ confirm_password: e.target.value }) }} />
-                                            
+
                                         </div>
                                         <div class="form-group">
                                             <p className="message">{this.state.preCheckNotice.toString()}</p>
                                         </div>
                                         <div className="form-group">
                                             <button id="signup-button" className="btn btn-info btn-md" onClick={this.handleSubmit}>submit</button>
-                                            
+
                                         </div>
                                         <p style={notice === "You've successfully registered to Eleable!" ? { color: 'green' } : { color: 'red' }}>{notice}</p>
                                         <div id="account-link" className="text-right">
-                                            Have an account?
+                                            Already have an account?
                                             <a href="/">Login here</a>
                                         </div>
                                     </form>

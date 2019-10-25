@@ -28,7 +28,7 @@ const Contactlist = ({ contacts, pending, error, loadContactlist }) => {
             </div>
             <div>
                 <div style={{ margin:"20px"}}>
-                    <h4 style={{ display: "inline-block", fontWeight:"bold" }}>CONTACT</h4>
+                    <h3 style={{ display: "inline-block", fontWeight:"bold" }}>CONTACTS</h3>
                     <CreateBtn style={{ display: "inline-block", }} />
                 </div>
 

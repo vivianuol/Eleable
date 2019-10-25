@@ -1,0 +1,11 @@
+.holder {
+    position: relative;
+    display: inline-block;
+}
+.logo{
+    float: left;
+}
+.holder > .dropDown {
+    position: absolute;
+    right: 2rem;
+}

@@ -1,5 +1,9 @@
 import * as C from './types';
 import axios from 'axios';
+import {RSAA} from 'redux-api-middleware';
+
+
+const API_URL = 'http://localhost:8080';
 
 export const signupPostPending = () => {
     return {
@@ -38,23 +42,24 @@ export const loginPostError = (error) => {
 }
 
 
-export const fetchContactsPending = () => {
-    return {
-        type: C.FETCH_CONTACTS_PENDING
-    }
-}
-export const fetchContactsSuccess = (data) => {
-    return {
-        type: C.FETCH_CONTACTS_SUCCESS,
-        payload: data
-    }
-}
-export const fetchContactsError = (error) => {
-    return {
-        type: C.FETCH_CONTACTS_ERROR,
-        payload: error
-    }
-}
+// export const fetchContactsPending = () => {
+//     return {
+//         type: C.FETCH_CONTACTS_PENDING
+//     }
+// }
+// export const fetchContactsSuccess = (data) => {
+//     return {
+//         type: C.FETCH_CONTACTS_SUCCESS,
+//         payload: data
+//     }
+// }
+// export const fetchContactsError = (error) => {
+//     return {
+//         type: C.FETCH_CONTACTS_ERROR,
+//         payload: error
+//     }
+// }
+
 
 
 
@@ -153,20 +158,37 @@ export const userLogout = () => {
 }
 
 
-export const fetchContacts = () => (dispatch, getState) => {
+// export const fetchContacts = () => (dispatch, getState) => {
 
-    dispatch(fetchContactsPending());
-    axios.get('http://localhost:8080/api/contacts/', {withCredentials: true})
-        .then(res => {
-            if (res.error) {
-                throw (res.error);
-            }
-            dispatch(fetchContactsSuccess(res.data.contacts),
+//     dispatch(fetchContactsPending());
+//     axios.get('http://localhost:8080/api/contacts/', {withCredentials: true})
+//         .then(res => {
+//             if (res.error) {
+//                 throw (res.error);
+//             }
+//             dispatch(fetchContactsSuccess(res.data.contacts),
 
-            )
+//             )
 
-        })
-}
+//         })
+// }
+
+export const fetchContactsList = () => ({
+    [RSAA]: {
+      endpoint: API_URL + '/api/contacts/',
+      method: 'GET',
+    //   headers: state => {
+    //     const contentTypeHeader = { 'Content-Type': 'application/json' };
+    //   },
+      credentials: "include",
+      types: [
+        C.FETCH_CONTACTS_PENDING,
+        C.FETCH_CONTACTS_SUCCESS,
+        C.FETCH_CONTACTS_ERROR
+      ],
+    },
+  });
+
 
 export const fetchOneContact = (id) => (dispatch, getState) => {
 
@@ -197,17 +219,17 @@ export const postOneContact = ( data ) => (dispatch, getState) =>
             dispatch(postContactSuccess(data)
             )
 
-            dispatch(fetchContactsPending())
+            dispatch(fetchContactsList())
 
-            return axios.get('http://localhost:8080/api/contacts/',  {withCredentials: true})
+            // return axios.get('http://localhost:8080/api/contacts/',  {withCredentials: true})
         })
-            .then(res => {
-                if (res.error) {
-                    throw (res.error);
-                }
-                dispatch(fetchContactsSuccess(res.data.contacts)
-                )
-        })
+        //     .then(res => {
+        //         if (res.error) {
+        //             throw (res.error);
+        //         }
+        //         dispatch(fetchContactsSuccess(res.data.contacts)
+        //         )
+        // })
 }
 
 
@@ -225,17 +247,17 @@ export const updateOneContact = (id, contact) => (dispatch, getState) => {
             dispatch(putContactSuccess(contact)
             )
 
-            dispatch(fetchContactsPending())
+            dispatch(fetchContactsList())
 
-            return axios.get('http://localhost:8080/api/contacts/',  {withCredentials: true})
+            // return axios.get('http://localhost:8080/api/contacts/',  {withCredentials: true})
         })
-            .then(res => {
-                if (res.error) {
-                    throw (res.error);
-                }
-                dispatch(fetchContactsSuccess(res.data.contacts)
-                )
-        })
+        //     .then(res => {
+        //         if (res.error) {
+        //             throw (res.error);
+        //         }
+        //         dispatch(fetchContactsSuccess(res.data.contacts)
+        //         )
+        // })
 }
 
 
@@ -250,17 +272,17 @@ export const deleteOneContact = (id) => (dispatch, getState) => {
             dispatch(deleteContactSuccess()
             )
 
-            dispatch(fetchContactsPending())
+            dispatch(fetchContactsList())
 
-            return axios.get('http://localhost:8080/api/contacts/',  {withCredentials: true})
+            // return axios.get('http://localhost:8080/api/contacts/',  {withCredentials: true})
         })
-            .then(res => {
-                if (res.error) {
-                    throw (res.error);
-                }
-                dispatch(fetchContactsSuccess(res.data.contacts)
-                )
-        })
+        //     .then(res => {
+        //         if (res.error) {
+        //             throw (res.error);
+        //         }
+        //         dispatch(fetchContactsSuccess(res.data.contacts)
+        //         )
+        // })
 }
 
 export const loginAccount = (data) => (dispatch, getState) => {
@@ -277,14 +299,18 @@ export const loginAccount = (data) => (dispatch, getState) => {
             dispatch(putOnNotice("Login success!"))
             dispatch(loginPostSuccess())
         setTimeout(() =>window.location.replace('/'), 2000);
-        } else {
-            dispatch(putOnNotice("Our service has encountered some unexpected issues, please try again later."))
-        }
+         } 
     
       }, (error) => {
-            console.log(error);
+            //console.log(error.response.status);
             dispatch(loginPostError(error));
-            dispatch(putOnNotice("Either username or password is incorrect!"))
+            if (error.response === undefined) {
+                dispatch(putOnNotice("Our service has encountered some unexpected issues, please try again later."))
+            } else if (error.response.status === 401) {
+                dispatch(putOnNotice("Either username or password is incorrect!"))
+            } else {
+                dispatch(putOnNotice("Oops! Something went wrong."))
+            }
       });
 }
 

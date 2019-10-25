@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import {isLogin, user, contacts, onecontact, notice} from '../reducers';
+import { apiMiddleware } from 'redux-api-middleware';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import {createBrowserHistory} from "history";
@@ -35,7 +36,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 // let store = createStore(persistedReducer)
 // let persistor = persistStore(store)
 
-const storeFactory = () => applyMiddleware(thunk, routerMiddleware, logger)(createStore)(persistedReducer);
+const storeFactory = () => applyMiddleware(apiMiddleware, thunk, routerMiddleware, logger)(createStore)(persistedReducer);
 
 export const store = storeFactory();
 export const persistor = persistStore(store);

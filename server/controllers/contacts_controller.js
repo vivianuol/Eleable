@@ -36,11 +36,8 @@ const upload = multer({
         res.json({});
     } else {
         contact.all(req.user.id, (result) => {
-            var ctcObject = {
-                contacts: result
-            };
-            //console.log(ctcObject.contacts.length);
-            res.send(ctcObject);
+            console.log("result: " + JSON.stringify(result));
+            res.send(result);
 
         });
     }

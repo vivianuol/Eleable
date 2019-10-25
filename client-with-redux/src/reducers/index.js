@@ -62,10 +62,11 @@ export function contacts(contactsState = {
                 pending: true
             }
         case C.FETCH_CONTACTS_SUCCESS:
+            console.log("payload: " + JSON.stringify(action.payload));
             return {
                 ...contactsState,
                 pending: false,
-                contacts: action.payload
+                contacts: (action.payload)
             }
         case C.FETCH_CONTACTS_ERROR:
             return {

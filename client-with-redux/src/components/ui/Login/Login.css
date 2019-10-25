@@ -1,24 +1,46 @@
 .body {
+    position: fixed;
+    top:0;
+    left: 0;
     margin: 0;
     padding: 0;
     background-color: #17a2b8;
-    height: 100vh;
+    width: 100%;
+    min-height: 100%;
   }
 
-.logo{
+.brand h2{
+  display: block;
   margin: 20px;
   color: whitesmoke;
   font-family: Tahoma, sans-serif;
+  clear: both;
 }
 
-  #login .container #login-row #login-column #login-box {
+#login .container #login-row #login-column #login-box {
     margin-top: 120px;
     max-width: 600px;
-    height: 320px;
+    height: 340px;
     border: 1px solid #9C9C9C;
     background-color: #EAEAEA;
   }
   #login .container #login-row #login-column #login-box #login-form {
-    margin: 10px;
-    padding-bottom: 20px;
+    padding: 20px;
+    
+  }
+
+  #login-button {
+    margin-top: 20px;
+  }
+
+  #register-link {
+    display: flex;
+    flex-wrap: wrap;
+    color: #4fa8b6;
+  }
+
+  .text-right > a {
+    margin: auto 5px;
+    color: #5dc6d6;
+    font-weight: bold;
   }

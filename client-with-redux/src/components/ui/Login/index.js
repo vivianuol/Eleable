@@ -49,7 +49,7 @@ class Login extends React.Component {
 
         return (
             <div className="body">
-                <div className="logo">
+                <div className="brand">
                     <h2>ELEABLE</h2>
                 </div>
                 <div id="login">
@@ -71,8 +71,9 @@ class Login extends React.Component {
                                             <input type="submit" name="submit" className="btn btn-info btn-md" value="Submit" onClick={this.handleSubmit} />
                                         </div>
                                         <p style={notice === "Login success!" ? { color: 'green' } : { color: 'red' }}>{notice}</p>
-                                        <div id="register-link" className="text-right">
-                                            <a href="/signup" className="text-info">Register here</a>
+                                        <div id="register-link" className="text-right">   
+                                        Do not have an account?
+                                            <a href="/signup">Register here</a>
                                         </div>
 
                                     </form>

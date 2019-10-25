@@ -8,8 +8,6 @@ const DeleteButton =({deleteContact, id}) => {
         console.log('deleteContact completed.')
         
     }
-
- 
         return (
             <>
                 <Button style={{margin: "0 10px"}}variant="outline-danger" onClick={handleOnDelete}>Delete</Button>
