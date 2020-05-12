@@ -16,6 +16,7 @@
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
+    "react-spinners-kit": "^1.9.1",
     "redux": "^4.0.4",
     "redux-api-middleware": "^3.0.1",
     "redux-first-history": "^4.0.5",

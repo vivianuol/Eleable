@@ -8,7 +8,7 @@ class Home extends React.Component {
 
     render () {
         return (
-            <div >
+            <div style={{position:"relative"}}>
                     <Navbar />
                     <Contactlist />
             </div>

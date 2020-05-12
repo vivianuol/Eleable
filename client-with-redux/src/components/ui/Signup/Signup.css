@@ -17,14 +17,18 @@
     clear: both;
   }
 
-  #signup .container #signup-row #signup-column #signup-box {
+  #signup-column {
+    padding: 0 20px;
+  }
+
+  #signup-box {
     margin-top: 120px;
     max-width: 600px;
     height: 450px;
     border: 1px solid #9c9c9c;
     background-color: #EAEAEA;
   }
-  #signup .container #signup-row #signup-column #signup-box #signup-form {
+  #signup-form {
     padding: 20px;
   }
 
@@ -35,7 +39,7 @@
  #account-link {
    display: flex;
    flex-wrap: wrap;
-    margin: 20px;
+    /* margin: 20px; */
     color: #4fa8b6;
   } 
 
@@ -43,4 +47,22 @@
     margin: auto 5px;
     color: #5dc6d6;
     font-weight: bold;
+  }
+
+  @media screen and (max-width: 420px) {
+    .body {
+      min-height: 700px;
+    }
+     #signup-box {
+      margin-top: 0;
+      height: 470px;
+      transform: scale(1, 0.9);
+     
+    }
+
+    .text-right > a {
+      margin: auto 5px;
+      padding-bottom: 10px ;
+    }
+
   }

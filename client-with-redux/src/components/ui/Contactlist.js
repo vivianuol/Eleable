@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
+import { BallSpinner } from "react-spinners-kit";
 import CreateBtn from '../containers/CreateBtn';
 import ContactUnit from './ContactUnit';
 
 
 
-const Contactlist = ({ contacts, pending, error, loadContactlist }) => {
+const Contactlist = ({ contacts, pending, error, loadContactlist, type, color }) => {
 
     //for componentDidMount, remember to add ,[] as the second argument in useEffect, or you'll run into an infinit loop.
     useEffect(() => {
@@ -20,30 +21,39 @@ const Contactlist = ({ contacts, pending, error, loadContactlist }) => {
     //     // more tests
     //     return true;
     // }
-
-    return (
-        <div>
-            <div>
-                {pending && <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="loading ico" />}
+    if (pending)
+        return (
+            <div style={{  position: "absolute", top: "15rem",
+                left: "50%",
+                transform: "translate(-50%, -50%)"}}>
+                <BallSpinner
+                    size={100}
+                    color="#8FD8D2"
+                    loading={pending}
+                />
             </div>
+
+        )
+
+    else return (
+
+        <div>
+            <div style={{ margin: "20px" }}>
+                <h3 style={{ display: "inline-block", fontWeight: "bold" }}>CONTACTS</h3>
+                <CreateBtn style={{ display: "inline-block", }} />
+            </div>
+
             <div>
-                <div style={{ margin:"20px"}}>
-                    <h3 style={{ display: "inline-block", fontWeight:"bold" }}>CONTACTS</h3>
-                    <CreateBtn style={{ display: "inline-block", }} />
+                <div style={{ display: "flex", flexWrap: "wrap" }}>
+                    {contacts.map((contact, id) =>
+                        <ContactUnit key={id} id={id} contact={contact} />
+
+                    )}
                 </div>
-
-                <div>
-                    <div style={{ display: "flex", flexWrap: "wrap" }}>
-                        {contacts.map((contact, id) =>
-                            <ContactUnit key={id} id={id} contact={contact} />
-
-                        )}
-                    </div>
-                </div>
-
             </div>
 
         </div>
+
     )
 
 }

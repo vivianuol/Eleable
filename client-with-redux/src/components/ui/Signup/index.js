@@ -52,7 +52,7 @@ class Signup extends React.Component {
                                             <input type="password" name="confirm-password" id="confirm-password" className="form-control" value={this.state.confirm_password} onChange={e => { this.setState({ confirm_password: e.target.value }) }} />
 
                                         </div>
-                                        <div class="form-group">
+                                        <div className="form-group">
                                             <p className="message">{this.state.preCheckNotice.toString()}</p>
                                         </div>
                                         <div className="form-group">

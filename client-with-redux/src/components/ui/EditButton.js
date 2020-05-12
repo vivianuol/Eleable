@@ -42,11 +42,11 @@ const EditButton = ({contact, id, loadContactInfo, updateOneContact}) => {
         <Button style={{margin: "0 10px"}} variant="outline-primary" onClick={()=> handleShow()}>Edit</Button>
         <Modal animation={false} show={show} backdrop={false}>
           <Modal.Body>
-            <label htmlFor="basic-url">Contact Name</label>
+            <label htmlFor="basic-url">Contact Name(required)</label>
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon3">
-                  first Name:
+                  First Name:
                 </InputGroup.Text>
               </InputGroup.Prepend>
               <FormControl defaultValue={contact.first_name} onChange={(e)=>{setFirstName(e.target.value); console.log('firstname: ' + e.target.value)}} id="basic-url" aria-describedby="basic-addon3" />
@@ -54,12 +54,12 @@ const EditButton = ({contact, id, loadContactInfo, updateOneContact}) => {
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon3">
-                  last Name:
+                  Last Name:
                           </InputGroup.Text>
               </InputGroup.Prepend>
               <FormControl defaultValue={contact.last_name} onChange={(e)=>setLastName(e.target.value)} id="basic-url" aria-describedby="basic-addon3" />
             </InputGroup>
-            <label htmlFor="basic-url">Contact Phone</label>
+            <label htmlFor="basic-url">Contact Phone(required)</label>
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon3">
@@ -68,11 +68,11 @@ const EditButton = ({contact, id, loadContactInfo, updateOneContact}) => {
               </InputGroup.Prepend>
               <FormControl defaultValue={contact.phone_number} onChange= {(e)=>setPhone(e.target.value)} id="basic-url" aria-describedby="basic-addon3" />
             </InputGroup>
-            <label htmlFor="basic-url">Contact Email</label>
+            <label htmlFor="basic-url">Contact Email(required)</label>
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon3">
-                  johnsmith@yahoo.com
+                  xxxxx@abc.com
                           </InputGroup.Text>
               </InputGroup.Prepend>
               <FormControl defaultValue={contact.email} onChange= {(e)=>setEmail(e.target.value)} id="basic-url" aria-describedby="basic-addon3" />
@@ -81,7 +81,7 @@ const EditButton = ({contact, id, loadContactInfo, updateOneContact}) => {
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon3">
-                  LinkedIn/Facebook/Twitter/Instagram:
+                  WeChat/Twitter etc.:
                           </InputGroup.Text>
               </InputGroup.Prepend>
               <FormControl defaultValue={contact.social_link} onChange= {(e)=>setSocial(e.target.value)}id="basic-url" aria-describedby="basic-addon3" />

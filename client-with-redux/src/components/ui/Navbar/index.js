@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, NavDropdown, Dropdown } from 'react-bootstrap';
+import { Navbar, NavDropdown } from 'react-bootstrap';
 import { connect } from "react-redux";
 import "./style.css";
 
@@ -27,7 +27,7 @@ class Navbarr extends React.Component {
 
 
                 <NavDropdown className="dropDown" title="" id="collasible-nav-dropdown">
-                    <NavDropdown.Item href="#">My Account</NavDropdown.Item>
+                    {/* <NavDropdown.Item href="#">My Account</NavDropdown.Item> */}
                     <NavDropdown.Item href="#" onClick={this.handleLogout}>Logout</NavDropdown.Item>
 
 

@@ -46,7 +46,7 @@ const CreateBtn = ({ postNewContact }) => {
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon3">
-                  first Name:
+                  First Name:
                 </InputGroup.Text>
               </InputGroup.Prepend>
               <FormControl defaultValue='' onChange={(e)=>{setFirstName(e.target.value); console.log('firstname: ' + e.target.value)}} id="basic-url" aria-describedby="basic-addon3" />
@@ -54,7 +54,7 @@ const CreateBtn = ({ postNewContact }) => {
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon3">
-                  last Name:
+                  Last Name:
                           </InputGroup.Text>
               </InputGroup.Prepend>
               <FormControl defaultValue='' onChange={(e)=>setLastName(e.target.value)} id="basic-url" aria-describedby="basic-addon3" />
@@ -72,7 +72,7 @@ const CreateBtn = ({ postNewContact }) => {
             <InputGroup className="mb-3">
               <InputGroup.Prepend>
                 <InputGroup.Text id="basic-addon3">
-                  johnsmith@yahoo.com
+                  xxxxx@abc.com
                           </InputGroup.Text>
               </InputGroup.Prepend>
               <FormControl defaultValue='' onChange= {(e)=>setEmail(e.target.value)} id="basic-url" aria-describedby="basic-addon3" />

@@ -1,4 +1,4 @@
-import {fetchOneContact, updateOneContact} from '../../actions';
+import {fetchOneContact, updateOneAndfetchAll} from '../../actions';
 import EditButton from '../ui/EditButton';
 import {connect} from 'react-redux';
 
@@ -7,7 +7,7 @@ const mapDispatchToProps = dispatch => ({
 
     loadContactInfo: (id)=>  dispatch(fetchOneContact(id)),
     updateOneContact: (id, contact) =>  dispatch(
-        updateOneContact(id, contact)
+        updateOneAndfetchAll(id, contact)
     )
     
     })
