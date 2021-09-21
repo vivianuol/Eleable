@@ -11,8 +11,10 @@ var PORT = process.env.PORT || 8080;
 
 var app = express();
 var cors = require('cors');
-// Then pass them to cors:
+
+//Then pass them to cors:
 //app.use(cors());
+
 
 //set up multiple corsOptions.
 var allowedOrigins = ['http://localhost:3000',
@@ -28,13 +30,14 @@ app.use("*", cors( function(req, callback){
   }
 ));
 
-// // Set up a whitelist and check against it:
+// Set up a whitelist and check against it:
 // var corsOptions = { 
 //   origin: 'http://localhost:3000',
 //   credentials: true
 // }
 // app.use('*', cors(corsOptions));
 
+//use cors only in localhost devlopment,
 //app.options("http://localhost:3000", cors())
 
 //configuring middleware needed for authentication
